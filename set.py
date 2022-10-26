@@ -11,38 +11,42 @@ for line in file_with_lines:
     v_st = line.split("    ")[3:4]
     allall.append(f_st+t_st+tt_st+v_st)
     name = []
-    Obj = []
+    #name = [_.replace("su hor", "SU_Hor") for _ in name]  # танцы с бубнами ради того, чтобы все su hor, SU Hor и прочие нечисти стали SU_Hor
+    #name = [_.replace("SU Hor", "SU_Hor") for _ in name]
+    #name = [_.replace("RZ Lyr", "RZ_Lyr") for _ in name]
+    #name = [_.replace("rzlyr", "RZ_Lyr") for _ in name]
+    #name = [_.replace("RZLyr", "RZ_Lyr") for _ in name]
+    #Obj = []
     for j in range(0, len(allall)):
         name.append(allall[j][0])
         name.append(allall[j][2])
         #if obj[j][0] = obj[j+1][0]:
-    for j in range(0, len(allall)):
-        Obj.append(allall[j][0])
+    #for j in range(0, len(allall)):
+        #Obj.append(allall[j][0])
 
-Obj = [_.replace("su hor", "SU_Hor") for _ in Obj]  #танцы с бубнами ради того, чтобы все su hor, SU Hor и прочие нечисти стали SU_Hor
-Obj = [_.replace("SU Hor", "SU_Hor") for _ in Obj]
-Obj = [_.replace("RZ Lyr", "RZ_Lyr") for _ in Obj]
-Obj = [_.replace("rzlyr", "RZ_Lyr") for _ in Obj]
-Obj = [_.replace("RZLyr", "RZ_Lyr") for _ in Obj]
-
+name = [_.replace("su hor", "SU_Hor") for _ in name]  #танцы с бубнами ради того, чтобы все su hor, SU Hor и прочие нечисти стали SU_Hor
+name = [_.replace("SU Hor", "SU_Hor") for _ in name]
+name = [_.replace("RZ Lyr", "RZ_Lyr") for _ in name]
+name = [_.replace("rzlyr", "RZ_Lyr") for _ in name]
+name = [_.replace("RZLyr", "RZ_Lyr") for _ in name]
+name = [_.replace("b", "B") for _ in name]
+name = [_.replace("v", "V") for _ in name]
+Obj = []
+for j in range(0, len(name)):
+    if (j+1)%2 == 1:
+        Obj.append(name[j])
 
 filt_SU_Hor = []
-for i in range(0, 231): #делаем список из фильтров для SU_Hor
-    if i%2 == 1:
+for i in range(0, len(name)): #делаем список из фильтров для SU_Hor
+    if i%2 == 1 and name[i-1] == name[0]:
         filt_SU_Hor.append(name[i])
-
-filt_SU_Hor = [_.replace("b", "B") for _ in filt_SU_Hor]
-filt_SU_Hor = [_.replace("v", "V") for _ in filt_SU_Hor]
 
 filt_SU_Hor = [x.strip(" ") for x in filt_SU_Hor] #удалил пробелы из списка filt_SU_Hor
 
 filt_RZ_Lyr = []
-for i in range(462, len(name)): #делаем список из фильтров для RZ_Lyr
-    if i%2 == 1:
+for i in range(0, len(name)): #делаем список из фильтров для RZ_Lyr
+    if i%2 == 1 and name[i-1] == name[462]:
         filt_RZ_Lyr.append(name[i])
-
-filt_RZ_Lyr = [_.replace("b", "B") for _ in filt_RZ_Lyr]
-filt_RZ_Lyr = [_.replace("v", "V") for _ in filt_RZ_Lyr]
 
 filt_RZ_Lyr = [x.strip(" ") for x in filt_RZ_Lyr] #удалил пробелы из списка filt_RZ_Lyr
 
