@@ -85,21 +85,28 @@ for i in range(0, len(filt)):
     if Obj[i] == OBJ[1] and filt[i] == f_RZ[1]:
         HJD_RZ_Lyr_V.append(allall[i][1])
         lume_R_V.append(lume[i])
-#print(HJD_SU_Hor_V)
-#print(HJD_RZ_Lyr)
-
-
-#print(HJD_filt_SU_Hor)
-#print(HJD_filt_RZ_Lyr)
-
+list_HJD_SU = []
+list_HJD_SU.extend([HJD_SU_Hor_B, HJD_SU_Hor_Ic, HJD_SU_Hor_V])
+list_lume_SU = []
+list_lume_SU.extend([lume_S_B, lume_S_Ic, lume_S_V])
+list_HJD_RZ = []
+list_HJD_RZ.extend([HJD_RZ_Lyr_B, HJD_RZ_Lyr_V])
+list_lume_RZ = []
+list_lume_RZ.extend([lume_R_B, lume_R_V])
 i_obj = input("Введите название объекта:" )
 i_filt = input("Введите названия фильтров через запятую:" )
 i_f = i_filt.split(",")
 odin = OBJ[0]
 dva = OBJ[1]
-if i_obj == odin and i_f == f_SU[0]:
-    print(f"\n \t HJD:{HJD_SU_Hor_B} \n \t Magnitude: {lume_S_B} " )
-if i_obj == odin and i_f == f_SU[1]:
-    print(f"\n \t HJD:{HJD_SU_Hor_Ic} \n \t Magnitude: {lume_S_Ic} " )
+if i_obj == odin:
+    for i in range(0, len(i_f)):
+        for j in range(0, len(f_SU)):
+            if i_f[i] == f_SU[j]:
+                print(f"\n \t HJD для {f_SU[j]}:{list_HJD_SU[j]} \n \t Magnitude для {f_SU[j]}: {list_lume_SU[j]}")
+if i_obj == dva:
+    for i in range(0, len(i_f)):
+        for j in range(0, len(f_RZ)):
+            if i_f[i] == f_RZ[j]:
+                print(f"\n \t HJD для {f_RZ[j]}:{list_HJD_RZ[j]} \n \t Magnitude для {f_RZ[j]}: {list_lume_RZ[j]}")
 
-#print(HJD_SU_Hor_V)
+
