@@ -1,5 +1,7 @@
 import numpy as np
 import scipy
+#import numpy as np
+#import mathplot as plt
 file = open("shtuka.dat", "r")
 file_with_lines = file.readlines()[1:267]
 
@@ -129,39 +131,38 @@ for i in range (0, len(date_hjd)):
 
 new_file = open(f'{i_obj}.dat', 'w')
 inpfilt = i_filt.split(",")
-f0, f1, f2 = None, None, None
+filt0, filt1, filt2 = None, None, None
 if len(inpfilt) == 1:
-    f0 = i_filt
-    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {f0}\n")
+    filt0 = i_filt
+    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {filt0}\n")
 elif len(inpfilt) == 2:
-    f0, f1 = inpfilt[0], inpfilt[1]
-    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {f0}\t Magn in {f1}\n")
+    filt0, filt1 = inpfilt[0], inpfilt[1]
+    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {filt0}\t Magn in {filt1}\n")
 elif len(inpfilt) == 3:
-    f0, f1, f2 = inpfilt[0], inpfilt[1], inpfilt[2]
-    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {f0}\t Magn in {f1}\t Magn in {f2}\n")
+    filt0, filt1, filt2 = inpfilt[0], inpfilt[1], inpfilt[2]
+    new_file.write(f"Date\t\t\t\t HJD\t\t\t Magn in {filt0}\t Magn in {filt1}\t Magn in {filt2}\n")
 
 lume0, lume1, lume2, Hjd, data = [], [], [], [], []
 for i in range(0, len(allall)):
-    for j in range(0, len(OBJ)):
-        if Obj[i] == str(i_obj):
-            if filt[i] == f0:
-                Hjd.append(date_hjd[i])
-                lume0.append(lume[i])
-                data.append(date_g[i])
-                lume1.append(f'\t\t')
-                lume2.append(f'\t\t')
-            elif filt[i] == f1:
-                Hjd.append(date_hjd[i])
-                lume0.append(f'\t\t')
-                data.append(date_g[i])
-                lume1.append(lume[i])
-                lume2.append(f'\t\t')
-            elif filt[i] == f2:
-                Hjd.append(date_hjd[i])
-                lume0.append(f'\t\t')
-                data.append(date_g[i])
-                lume1.append(f'\t\t')
-                lume2.append(lume[i])
+    if Obj[i] == str(i_obj):
+        if filt[i] == filt0:
+            Hjd.append(date_hjd[i])
+            lume0.append(lume[i])
+            data.append(date_g[i])
+            lume1.append(f'\t\t')
+            lume2.append(f'\t\t')
+        elif filt[i] == filt1:
+            Hjd.append(date_hjd[i])
+            lume0.append(f'\t\t')
+            data.append(date_g[i])
+            lume1.append(lume[i])
+            lume2.append(f'\t\t')
+        elif filt[i] == filt2:
+            Hjd.append(date_hjd[i])
+            lume0.append(f'\t\t')
+            data.append(date_g[i])
+            lume1.append(f'\t\t')
+            lume2.append(lume[i])
 
 for k in range(0, len(Hjd)):
     min_Hjd = min(Hjd)
